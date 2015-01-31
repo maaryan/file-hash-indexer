@@ -1,7 +1,5 @@
 package com.maaryan.fhi;
 
-import static org.junit.Assert.fail;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -46,7 +44,6 @@ public class FileHashIndexerRelativePathTest extends FileHashIndexerTest {
 		System.out.println(fhi.getFileIndexMap());
 		System.out.println(fhi.getFileIndexMap().size());
 		Assert.assertTrue(fhi.getFileIndexMap().size()==1);
-		fail("Not yet implemented");
 	}
 	@AfterClass
 	public static void afterClass() {
