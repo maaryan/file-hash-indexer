@@ -1,10 +1,10 @@
 package com.maaryan.fhi.task;
 
-import java.io.IOException;
 import java.nio.file.Path;
 
 import com.maaryan.fhi.FileHashIndexerFullPath;
-import com.maaryan.fhi.excp.FileHashIndexerException;
+import com.maaryan.fhi.helper.FileMetaHelper;
+import com.maaryan.fhi.vo.FileMeta;
 
 public class FileMetaFullPathTask extends FileMetaTask{
 
@@ -12,11 +12,7 @@ public class FileMetaFullPathTask extends FileMetaTask{
 		super(fileIndexerFullPath, file);
 	}
 
-	protected String getPath(Path file){
-		try {
-			return file.toRealPath().toString();
-		} catch (IOException e) {
-			throw new FileHashIndexerException(e);
-		}
+	protected FileMeta getFileMeta(){
+		return FileMetaHelper.getFullPathMeta(file, fileHashIndexer.getIndexerConfig().getFileHashAlgorithm());
 	}
 }

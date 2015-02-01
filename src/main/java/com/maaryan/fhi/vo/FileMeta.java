@@ -1,10 +1,14 @@
 package com.maaryan.fhi.vo;
 
+import java.util.Date;
+
 
 public class FileMeta {
 	private String fileHash;
 	private Long fileSize;
 	private String filePath;
+	private Date createdTime;
+	private Date modifiedTime;
 	public String getFileHash() {
 		return fileHash;
 	}
@@ -25,6 +29,18 @@ public class FileMeta {
 	}
 	public boolean isAcceptable() {
 		return fileSize != null && fileHash!=null && !fileHash.trim().isEmpty();
+	}
+	public Date getCreatedTime() {
+		return createdTime;
+	}
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
+	}
+	public Date getModifiedTime() {
+		return modifiedTime;
+	}
+	public void setModifiedTime(Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
 	}
 	@Override
 	public int hashCode() {

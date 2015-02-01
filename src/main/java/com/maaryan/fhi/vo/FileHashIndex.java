@@ -75,4 +75,29 @@ public class FileHashIndex {
 		}
 		return duplicateFilesList;
 	}
+	public FileMeta getUniqueFileMeta(String fileHashKey){
+		Set<FileMeta> s = fileIndexMap.get(fileHashKey);
+		if(s.size()>0){
+			return s.iterator().next();
+		}
+		return null;
+	}
+	public void addUniqueFileMeta(FileMeta fileMeta) {
+		if (!fileMeta.isAcceptable()) {
+			throw new FileHashIndexerException("Not acceptable: "+fileMeta);
+		}
+		Set<FileMeta> fileSet = fileIndexMap.get(fileMeta.getFileHash());
+		fileSet = new TreeSet<FileMeta>(new Comparator<FileMeta>() {
+			public int compare(FileMeta o1, FileMeta o2) {
+				if (o1 == null && o2 == null)
+					return 0;
+				if (o1 == null || o2 == null)
+					return -1;
+				return o1.getFilePath().compareTo(o2.getFilePath());
+			}
+		});
+		fileIndexMap.put(fileMeta.getFileHash(), fileSet);
+		fileSet.add(fileMeta);
+	}
+
 }
