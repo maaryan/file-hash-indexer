@@ -77,7 +77,7 @@ public class FileHashIndex {
 	}
 	public FileMeta getUniqueFileMeta(String fileHashKey){
 		Set<FileMeta> s = fileIndexMap.get(fileHashKey);
-		if(s.size()>0){
+		if(s!=null && s.size()>0){
 			return s.iterator().next();
 		}
 		return null;
